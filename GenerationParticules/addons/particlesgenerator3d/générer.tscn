@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbh615pmg7uwt"]
+
+[ext_resource type="Script" path="res://addons/particlesgenerator3d/Particles.gd" id="1_aahre"]
+
+[sub_resource type="GDScript" id="GDScript_n5epj"]
+script/source = "@tool
+extends Button
+"
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sfpbh"]
+spread = 30.2853
+flatness = 0.949469
+gravity = Vector3(-1.86051, 2.21665, -7.99529)
+
+[sub_resource type="PrismMesh" id="PrismMesh_rmqvy"]
+
+[node name="Généreration" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Generer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 176.0
+offset_bottom = 53.0
+text = "Generate"
+script = SubResource("GDScript_n5epj")
+
+[node name="Stop" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 66.0
+offset_right = 176.0
+offset_bottom = 116.0
+text = "Stop Generating"
+script = SubResource("GDScript_n5epj")
+
+[node name="GeneratedParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 648
+lifetime = 46.1389
+process_material = SubResource("ParticleProcessMaterial_sfpbh")
+draw_pass_1 = SubResource("PrismMesh_rmqvy")
+script = ExtResource("1_aahre")
+
+[connection signal="pressed" from="Generer" to="GeneratedParticles" method="_on_button_pressed"]
+[connection signal="pressed" from="Stop" to="GeneratedParticles" method="_on_stop_pressed"]
