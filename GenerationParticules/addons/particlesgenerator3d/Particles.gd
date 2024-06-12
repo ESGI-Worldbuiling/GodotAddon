@@ -23,6 +23,13 @@ func _generate_particles():
 	
 	self.draw_pass_1=shape
 	self.lifetime=randf_range(5.0, 50.0)
+	
+	var overlay_material = StandardMaterial3D.new()
+	var random_color = Color(randf_range(0.0, 1.0), randf_range(0.0, 1.0), randf_range(0.0, 1.0))
+	overlay_material.albedo_color = random_color
+	
+	self.material_override = overlay_material
+	
 
 
 func random_mesh_shape() -> Mesh:
