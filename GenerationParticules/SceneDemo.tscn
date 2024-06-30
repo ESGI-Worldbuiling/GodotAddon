@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk167pgf8xatn"]
+
+[ext_resource type="PackedScene" uid="uid://tg0ih8l82775" path="res://Monstre2.glb" id="1_pwi8k"]
+[ext_resource type="PackedScene" uid="uid://bi6vtgc0qk1jc" path="res://Monstre3.glb" id="2_eiixh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6iuu8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qc1yk"]
+albedo_color = Color(0.921569, 0.698039, 0.513726, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Monstre2" parent="." instance=ExtResource("1_pwi8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.23143, 5.683, -16.8604)
+
+[node name="Monstre3" parent="." instance=ExtResource("2_eiixh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.0849, 6.0619, 9.56438)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(119.761, 0, 0, 0, 4.02034, 0, 0, 0, 115.106, 16.18, 2.01101, 4.66276)
+mesh = SubResource("BoxMesh_6iuu8")
+surface_material_override/0 = SubResource("StandardMaterial3D_qc1yk")
