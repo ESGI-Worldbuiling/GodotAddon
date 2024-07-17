@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://vm12sqe6g6o0"]
+
+[ext_resource type="Script" path="res://lenia/Lenia.gd" id="1_ra5pg"]
+
+[node name="TestLenia" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Lenia" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_ra5pg")
+sprite = NodePath("../Sprite2D")
+image_width = 500
+image_height = 480
