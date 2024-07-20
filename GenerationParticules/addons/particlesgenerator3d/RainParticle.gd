@@ -6,7 +6,12 @@ var count =0
 func _ready():
 	count=0
 	self.emitting=false
-
+	var material = ParticleProcessMaterial.new()
+	var emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_SPHERE
+	material.emission_shape = emission_shape
+	material.spread = randf_range(0.1, 100)
+	material.flatness = randf_range(0.1, 1.0)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
