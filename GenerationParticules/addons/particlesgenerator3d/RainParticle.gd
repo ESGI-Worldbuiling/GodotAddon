@@ -5,7 +5,7 @@ var count =0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	count=0
-	self.emitting=false
+	self.emitting=true
 	
 	var material = ParticleProcessMaterial.new()
 	self.process_material = material
