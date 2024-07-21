@@ -20,57 +20,28 @@ gravity = Vector3(-1.86051, 2.21665, -7.99529)
 
 [sub_resource type="PrismMesh" id="PrismMesh_rmqvy"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kiwyg"]
-emission_shape = 3
-emission_box_extents = Vector3(10, 0.5, 10)
-direction = Vector3(0, -1, 0)
-spread = 2.0
-initial_velocity_min = 15.0
-initial_velocity_max = 15.0
-color = Color(0.705882, 0.823529, 0.862745, 1)
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.0
-
-[sub_resource type="Curve" id="Curve_guxxh"]
-max_value = 0.1
-_data = [Vector2(0, 0.00310958), 0.0, 0.0, 0, 0, Vector2(0.0025707, 0.0486673), 0.416009, 0.416009, 0, 0, Vector2(1, 0.00246792), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffl4w"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_oldlp")
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_uul14"]
-material = SubResource("StandardMaterial3D_ffl4w")
-curve = SubResource("Curve_guxxh")
-
-[sub_resource type="Curve" id="Curve_tnfo1"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0945455, 0.951565), -1.58171, -1.58171, 0, 0, Vector2(0.392727, 0), -0.0569214, -0.0569214, 0, 0, Vector2(1, 0.0216097), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_xp1wj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.09, 0.95), 0.0, 0.0, 0, 0, Vector2(0.39, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.02), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_jwlra"]
-curve = SubResource("Curve_tnfo1")
+[sub_resource type="CurveTexture" id="CurveTexture_7e0nt"]
+curve = SubResource("Curve_xp1wj")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nxfgp"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3elno"]
 emission_shape = 3
-emission_box_extents = Vector3(5, 0, 5)
+emission_box_extents = Vector3(1, 1, 1)
+angle_curve = SubResource("CurveTexture_7e0nt")
 direction = Vector3(0, -1, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
 gravity = Vector3(0, -1, 0)
 scale_min = 0.2
 scale_max = 0.2
-scale_curve = SubResource("CurveTexture_jwlra")
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_kyi1o"]
+[sub_resource type="SphereMesh" id="SphereMesh_2er0x"]
 
 [sub_resource type="Curve" id="Curve_3fo6u"]
 min_value = -360.0
@@ -137,6 +108,33 @@ particles_anim_loop = true
 [sub_resource type="QuadMesh" id="QuadMesh_aa3og"]
 material = SubResource("StandardMaterial3D_xyn57")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0g1ix"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 0.5, 10)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+color = Color(0.705882, 0.823529, 0.862745, 1)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="Curve" id="Curve_wxm0o"]
+max_value = 0.1
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.02, 0.05), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvpxh"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("3_oldlp")
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_bsj7n"]
+material = SubResource("StandardMaterial3D_kvpxh")
+curve = SubResource("Curve_wxm0o")
+
 [node name="Généreration" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -171,54 +169,21 @@ process_material = SubResource("ParticleProcessMaterial_sfpbh")
 draw_pass_1 = SubResource("PrismMesh_rmqvy")
 script = ExtResource("1_aahre")
 
-[node name="Rain" type="Button" parent="."]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 133.0
-offset_right = 178.0
-offset_bottom = 184.0
-text = "Rain"
-script = ExtResource("2_t5s23")
-
-[node name="RainParticle" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.2649, 0)
-emitting = false
-amount = 500
-lifetime = 2.0
-randomness = 1.0
-visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
-trail_enabled = true
-trail_lifetime = 0.2
-process_material = SubResource("ParticleProcessMaterial_kiwyg")
-draw_pass_1 = SubResource("RibbonTrailMesh_uul14")
-script = ExtResource("4_npugx")
-
-[node name="Snow" type="Button" parent="."]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 199.0
-offset_right = 178.0
-offset_bottom = 250.0
-text = "Snow
-"
-script = ExtResource("2_t5s23")
-
 [node name="SnowParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.6424, 0)
 emitting = false
 amount = 500
 lifetime = 5.0
 randomness = 0.5
-process_material = SubResource("ParticleProcessMaterial_nxfgp")
-draw_pass_1 = SubResource("SphereMesh_kyi1o")
+process_material = SubResource("ParticleProcessMaterial_3elno")
+draw_pass_1 = SubResource("SphereMesh_2er0x")
 script = ExtResource("5_g0mxa")
 
 [node name="Fire" type="Button" parent="."]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 269.0
-offset_right = 177.0
-offset_bottom = 320.0
+offset_top = 136.0
+offset_right = 175.0
+offset_bottom = 187.0
 text = "Fire"
 script = ExtResource("2_t5s23")
 
@@ -231,8 +196,17 @@ process_material = SubResource("ParticleProcessMaterial_ri7yq")
 draw_pass_1 = SubResource("QuadMesh_aa3og")
 script = ExtResource("7_0td4m")
 
+[node name="RainParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.98512, 0)
+emitting = false
+amount = 500
+lifetime = 2.0
+randomness = 1.0
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+process_material = SubResource("ParticleProcessMaterial_0g1ix")
+draw_pass_1 = SubResource("RibbonTrailMesh_bsj7n")
+script = ExtResource("4_npugx")
+
 [connection signal="pressed" from="Generer" to="GeneratedParticles" method="_on_button_pressed"]
 [connection signal="pressed" from="Stop" to="GeneratedParticles" method="_on_stop_pressed"]
-[connection signal="pressed" from="Rain" to="RainParticle" method="_on_rain_pressed"]
-[connection signal="pressed" from="Snow" to="SnowParticles" method="_on_snow_pressed"]
 [connection signal="pressed" from="Fire" to="FireParticles" method="_on_fire_pressed"]

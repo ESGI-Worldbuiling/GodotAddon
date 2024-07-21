@@ -6,7 +6,7 @@ var count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	count = 0
-	self.emitting = true
+	self.emitting = false
 	
 
 	var material = ParticleProcessMaterial.new()
@@ -47,7 +47,6 @@ func _ready():
 	var sphere_mesh = SphereMesh.new()
 	self.draw_pass_1 = sphere_mesh 
 	draw_pass_1.radius=0.5
-	draw_pass_1.Height=1
 
 func _process(delta):
 	pass
