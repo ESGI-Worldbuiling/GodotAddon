@@ -15,6 +15,12 @@ const vec4 deadColor = vec4(0.0,0.0,0.0,1.0);
 
 const float radius = 2.0f;
 
+const mat3 conwayKernel = mat3(
+                                1.0,1.0,1.0,
+                                1.0,0.0,1.0,
+                                1.0,1.0,1.0
+                            );
+
 bool isCellAlive(int x, int y) {
     vec4 pixel = imageLoad(inputImage, ivec2(x,y));
     return pixel.r > 0.5;
@@ -22,14 +28,19 @@ bool isCellAlive(int x, int y) {
 
 int getCellNeightbours(int x, int y, int width, int height) {
     int count = 0;
-    for (int i = -1; i <= 1; i++)
-    for (int j = -1; j <= 1; j++) {
-        if (i == 0 && j == 0 ) continue;
-        int nx = x + i;
-        int ny = y + j;
-        if (nx > 0 && nx < width && ny > 0 && ny < height) {
-            vec4 pixel = imageLoad(inputImage, ivec2(nx,ny));
-            count += int(isCellAlive(nx,ny));
+    for (int i = -1; i <= 1; i++) {
+        for (int j = -1; j <= 1; j++) {
+            if (i == 0 && j == 0) continue; // Skip the current cell
+
+            int nx = x + i;
+            int ny = y + j;
+
+            if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                vec4 pixel = imageLoad(inputImage, ivec2(nx, ny));
+                if (isCellAlive(nx, ny)) {
+                    count += int(conwayKernel[i+1][j+1]) * int(pixel.r);
+                }
+            }
         }
     }
     return count;
