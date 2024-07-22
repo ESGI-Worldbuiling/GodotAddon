@@ -21,13 +21,6 @@ func _ready():
 	var curve_texture = CurveTexture.new()
 	curve_texture.width=256
 	curve_texture.curve = curve
-	var curves=Curve.new()
-	curves.add_point(Vector2(0.00, 0.01))  # Point de départ
-	curves.add_point(Vector2(0.01, 0.98))  # Point intermédiaire
-	curves.add_point(Vector2(1.00,0.00))
-	var text=CurveTexture.new()
-	text=curves
-	material.scale_curve=text
 	material.angle_curve = curve_texture
 	material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_SPHERE
 	material.angle_min=261.1
@@ -56,7 +49,13 @@ func _ready():
 	self.amount=200
 	self.randomness=1
 	material.gravity=Vector3(0,0,0)
-	
+	var curves=Curve.new()
+	curves.add_point(Vector2(0.00, 0.01))  # Point de départ
+	curves.add_point(Vector2(0.01, 0.98))  # Point intermédiaire
+	curves.add_point(Vector2(1.00,0.00))
+	var text=CurveTexture.new()
+	text=curves
+	material.scale_curve=text
 	material.anim_speed_min=1
 	material.angular_velocity_max1
 	material.anim_offset_min=1
