@@ -1,19 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddtt8531fxfre"]
+[gd_scene load_steps=8 format=3 uid="uid://ddtt8531fxfre"]
 
-[ext_resource type="PackedScene" uid="uid://dkcrdkt1aifl8" path="res://addons/particlesgenerator3d/Textures/terrain.gltf" id="1_0tw60"]
+[ext_resource type="PackedScene" uid="uid://cooksy1cbf4sa" path="res://creature2.glb" id="1_jhpr1"]
+[ext_resource type="PackedScene" uid="uid://bfe7gb0hhwltx" path="res://terrain.glb" id="2_1iroj"]
 [ext_resource type="Script" path="res://addons/particlesgenerator3d/SnowParticles.gd" id="2_y3tl8"]
 
-[sub_resource type="Curve" id="Curve_mhga2"]
+[sub_resource type="Curve" id="Curve_x03u2"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.09, 0.95), 0.0, 0.0, 0, 0, Vector2(0.39, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.02), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_tdpa2"]
-curve = SubResource("Curve_mhga2")
+[sub_resource type="CurveTexture" id="CurveTexture_bmtco"]
+curve = SubResource("Curve_x03u2")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q5n70"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_606yd"]
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
-angle_curve = SubResource("CurveTexture_tdpa2")
+angle_curve = SubResource("CurveTexture_bmtco")
 direction = Vector3(0, -1, 0)
 initial_velocity_min = 4.0
 initial_velocity_max = 4.0
@@ -24,21 +25,85 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_3liql"]
+[sub_resource type="SphereMesh" id="SphereMesh_dywmr"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.0525869, 0.658965, -0.750333, -0.0460704, 0.752173, 0.657353, 0.997553, 0, 0.0699133, -0.0790043, 13.006, 12.6596)
 
-[node name="TerrainScene" parent="." instance=ExtResource("1_0tw60")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69833, 0)
+[node name="creature2" parent="." instance=ExtResource("1_jhpr1")]
+transform = Transform3D(0.23468, 0, 0, 0, 0.23468, 0, 0, 0, 0.23468, 17.7071, -1.37211, 14.7063)
+
+[node name="Skeleton3D" parent="creature2/Creature_Armature" index="0"]
+bones/0/position = Vector3(0.00108609, -0.0663405, -0.00108609)
+bones/1/position = Vector3(2.11081, 1.02237, -0.364694)
+bones/1/rotation = Quaternion(0.00983131, 0.278355, 0.957308, -0.0773451)
+bones/2/position = Vector3(2.39269, 0.827432, 0.00478188)
+bones/2/rotation = Quaternion(0.524071, 0.46253, 0.505675, -0.505675)
+bones/3/position = Vector3(-2.23154, -0.952325, -1.66855)
+bones/3/rotation = Quaternion(-0.678505, 0.256273, 0.215047, 0.653995)
+bones/4/position = Vector3(-2.23069, -0.947627, 1.6706)
+bones/4/rotation = Quaternion(-0.260494, 0.683151, 0.639569, 0.237483)
+bones/5/position = Vector3(-3.3839, -0.951227, -3.11603)
+bones/5/rotation = Quaternion(0.779995, -0.236247, -0.242071, -0.526495)
+bones/6/position = Vector3(-3.383, -0.955322, 3.12041)
+bones/6/rotation = Quaternion(0.607563, -0.554292, -0.568855, -0.00572033)
+bones/7/position = Vector3(-4.7168, -1.73627, -4.42094)
+bones/7/rotation = Quaternion(-0.783015, 0.225767, 0.263957, 0.515988)
+bones/8/position = Vector3(-4.71473, -1.73861, 4.41577)
+bones/8/rotation = Quaternion(0.558299, -0.574894, -0.59027, 0.096855)
+bones/9/position = Vector3(-0.386247, -0.194158, -1.5066)
+bones/9/rotation = Quaternion(-0.782643, 0.0941367, 0.0521949, 0.613094)
+bones/10/position = Vector3(-0.391204, -0.189562, 1.50634)
+bones/10/rotation = Quaternion(0.647692, -0.452688, -0.449207, 0.416872)
+bones/11/position = Vector3(0.798477, -0.488002, -1.44687)
+bones/11/rotation = Quaternion(-0.510889, -0.187353, -0.184289, 0.818492)
+bones/12/position = Vector3(0.802781, -0.48768, 1.44984)
+bones/12/rotation = Quaternion(0.219225, -0.548831, -0.533432, 0.605124)
+
+[node name="creature3" parent="." instance=ExtResource("1_jhpr1")]
+transform = Transform3D(2.68472, 0, 0, 0, 2.68472, 0, 0, 0, 2.68472, 92.1637, 1.24845, 32.162)
+
+[node name="Skeleton3D" parent="creature3/Creature_Armature" index="0"]
+bones/0/position = Vector3(0.00108609, -0.0663405, -0.00108609)
+bones/1/position = Vector3(2.11081, 1.02237, -0.364694)
+bones/1/rotation = Quaternion(0.00983131, 0.278355, 0.957308, -0.0773451)
+bones/2/position = Vector3(2.39269, 0.827432, 0.00478188)
+bones/2/rotation = Quaternion(0.524071, 0.46253, 0.505675, -0.505675)
+bones/3/position = Vector3(-2.23154, -0.952325, -1.66855)
+bones/3/rotation = Quaternion(-0.678505, 0.256273, 0.215047, 0.653995)
+bones/4/position = Vector3(-2.23069, -0.947627, 1.6706)
+bones/4/rotation = Quaternion(-0.260494, 0.683151, 0.639569, 0.237483)
+bones/5/position = Vector3(-3.3839, -0.951227, -3.11603)
+bones/5/rotation = Quaternion(0.779995, -0.236247, -0.242071, -0.526495)
+bones/6/position = Vector3(-3.383, -0.955322, 3.12041)
+bones/6/rotation = Quaternion(0.607563, -0.554292, -0.568855, -0.00572033)
+bones/7/position = Vector3(-4.7168, -1.73627, -4.42094)
+bones/7/rotation = Quaternion(-0.783015, 0.225767, 0.263957, 0.515988)
+bones/8/position = Vector3(-4.71473, -1.73861, 4.41577)
+bones/8/rotation = Quaternion(0.558299, -0.574894, -0.59027, 0.096855)
+bones/9/position = Vector3(-0.386247, -0.194158, -1.5066)
+bones/9/rotation = Quaternion(-0.782643, 0.0941367, 0.0521949, 0.613094)
+bones/10/position = Vector3(-0.391204, -0.189562, 1.50634)
+bones/10/rotation = Quaternion(0.647692, -0.452688, -0.449207, 0.416872)
+bones/11/position = Vector3(0.798477, -0.488002, -1.44687)
+bones/11/rotation = Quaternion(-0.510889, -0.187353, -0.184289, 0.818492)
+bones/12/position = Vector3(0.802781, -0.48768, 1.44984)
+bones/12/rotation = Quaternion(0.219225, -0.548831, -0.533432, 0.605124)
+
+[node name="TerrainScene" parent="." instance=ExtResource("2_1iroj")]
+transform = Transform3D(6.65424, 0, 0, 0, 6.65424, 0, 0, 0, 6.65424, 0, 0, 0)
 
 [node name="SnowParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3811, 24.2827, 10.1916)
-amount = 1230
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.79344, 17.0145, 12.4568)
+emitting = false
+amount = 500
 lifetime = 5.0
 randomness = 0.5
-process_material = SubResource("ParticleProcessMaterial_q5n70")
-draw_pass_1 = SubResource("SphereMesh_3liql")
+process_material = SubResource("ParticleProcessMaterial_606yd")
+draw_pass_1 = SubResource("SphereMesh_dywmr")
 script = ExtResource("2_y3tl8")
+
+[editable path="creature2"]
+[editable path="creature3"]

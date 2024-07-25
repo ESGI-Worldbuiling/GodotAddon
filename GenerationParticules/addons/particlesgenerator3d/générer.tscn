@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbh615pmg7uwt"]
+[gd_scene load_steps=13 format=3 uid="uid://dbh615pmg7uwt"]
 
 [ext_resource type="Script" path="res://addons/particlesgenerator3d/Particles.gd" id="1_aahre"]
+[ext_resource type="Script" path="res://addons/particlesgenerator3d/générer.gd" id="1_aie7x"]
 [ext_resource type="Texture2D" uid="uid://ws5w46x5a8yu" path="res://addons/particlesgenerator3d/Textures/Smoke30Frames_0.png" id="6_u4aag"]
 [ext_resource type="Script" path="res://addons/particlesgenerator3d/FireParticles.gd" id="7_0td4m"]
 
@@ -16,40 +17,22 @@ gravity = Vector3(-1.86051, 2.21665, -7.99529)
 
 [sub_resource type="PrismMesh" id="PrismMesh_rmqvy"]
 
-[sub_resource type="Curve" id="Curve_3fo6u"]
+[sub_resource type="Curve" id="Curve_glgg4"]
 min_value = -360.0
 max_value = 360.0
 bake_resolution = 80
-_data = [Vector2(0, -355.814), 0.0, 0.0, 0, 0, Vector2(0.549528, 360), 0.0, 0.0, 0, 0, Vector2(0.995283, -351.628), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, -355.81), 0.0, 0.0, 0, 0, Vector2(0.55, 360), 0.0, 0.0, 0, 0, Vector2(1, -351.63), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_q2pym"]
-width = 77
-curve = SubResource("Curve_3fo6u")
+[sub_resource type="CurveTexture" id="CurveTexture_mfbg1"]
+curve = SubResource("Curve_glgg4")
 
-[sub_resource type="Curve" id="Curve_2164s"]
-min_value = -360.0
-max_value = 360.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0165094, -318.14), 0.0, 0.0, 0, 0, Vector2(0.54717, 196.744), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_12acf"]
-curve = SubResource("Curve_2164s")
-
-[sub_resource type="Curve" id="Curve_srtob"]
-_data = [Vector2(0, 0.0116278), 0.0, 30.1977, 0, 0, Vector2(0.0141509, 0.976744), 0.333123, 0.333123, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_a73s6"]
-curve = SubResource("Curve_srtob")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ri7yq"]
-lifetime_randomness = 1.0
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ejuey"]
 emission_shape = 1
 emission_sphere_radius = 0.4
 angle_min = 261.1
 angle_max = 360.0
-angle_curve = SubResource("CurveTexture_q2pym")
+angle_curve = SubResource("CurveTexture_mfbg1")
 inherit_velocity_ratio = 1.0
 direction = Vector3(0, 1, 0)
 spread = 0.0
@@ -57,15 +40,11 @@ initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 angular_velocity_min = 40.0
 angular_velocity_max = 40.0
-angular_velocity_curve = SubResource("CurveTexture_12acf")
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_a73s6")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
-anim_offset_min = 1.0
-anim_offset_max = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyn57"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msq3k"]
 transparency = 1
 depth_draw_mode = 2
 shading_mode = 0
@@ -74,12 +53,12 @@ albedo_color = Color(0.996078, 0.396078, 0.0509804, 1)
 albedo_texture = ExtResource("6_u4aag")
 billboard_mode = 3
 billboard_keep_scale = true
-particles_anim_h_frames = 6
-particles_anim_v_frames = 5
-particles_anim_loop = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
-[sub_resource type="QuadMesh" id="QuadMesh_aa3og"]
-material = SubResource("StandardMaterial3D_xyn57")
+[sub_resource type="QuadMesh" id="QuadMesh_aojpk"]
+material = SubResource("StandardMaterial3D_msq3k")
 
 [node name="Généreration" type="Control"]
 layout_mode = 3
@@ -88,6 +67,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_aie7x")
 
 [node name="Generer" type="Button" parent="."]
 layout_mode = 0
@@ -120,9 +100,18 @@ emitting = false
 amount = 200
 randomness = 1.0
 draw_order = 3
-process_material = SubResource("ParticleProcessMaterial_ri7yq")
-draw_pass_1 = SubResource("QuadMesh_aa3og")
+process_material = SubResource("ParticleProcessMaterial_ejuey")
+draw_pass_1 = SubResource("QuadMesh_aojpk")
 script = ExtResource("7_0td4m")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 134.0
+offset_right = 175.0
+offset_bottom = 196.0
+text = "blabla"
 
 [connection signal="pressed" from="Generer" to="GeneratedParticles" method="_on_button_pressed"]
 [connection signal="pressed" from="Stop" to="GeneratedParticles" method="_on_stop_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
